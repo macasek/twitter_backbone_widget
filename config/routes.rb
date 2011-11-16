@@ -2,6 +2,13 @@ HelloBackbonejs::Application.routes.draw do
   resources :examples, :only => [] do
     collection do
       get :ex1
+      get :ex2
+      get :ex3
+      get :ex4
+      get :ex5
+      get :ex6
+      get :ex7
+      get :ex8
     end
   end
   
