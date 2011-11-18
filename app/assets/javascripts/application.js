@@ -106,7 +106,7 @@ $(function() {
         });
         
         this.timeoutHandle = setTimeout(this.refresh, 12000);        
-      },  
+      }  
     });
   
     window.twitterView = new TwitterView();                             
