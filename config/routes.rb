@@ -6,11 +6,10 @@ HelloBackbonejs::Application.routes.draw do
       get :ex3
       get :ex4
       get :ex5
-      get :ex6
-      get :ex7
-      get :ex8
     end
   end
+  
+  resources :twitter, :only =>[:index]
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

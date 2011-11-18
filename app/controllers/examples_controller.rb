@@ -13,13 +13,4 @@ class ExamplesController < ApplicationController
   
   def ex5
   end
-  
-  def ex6
-  end
-  
-  def ex7
-  end
-  
-  def ex8
-  end
 end
