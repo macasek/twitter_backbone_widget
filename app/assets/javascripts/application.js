@@ -105,7 +105,7 @@ $(function() {
           }
         });
         
-        setTimeout(this.refresh, 12000);        
+        this.timeoutHandle = setTimeout(this.refresh, 12000);        
       },  
     });
   
