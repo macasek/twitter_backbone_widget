@@ -18,7 +18,7 @@ $(function() {
 
     var Twitter = Backbone.Collection.extend({
       model: Tweet,
-      url: "/twitter.json"
+      url: "https://api.twitter.com/1/statuses/user_timeline.json?screen_name=macasek&count=5&include_rts=true&callback=?"
     });
   
     var TweetView = Backbone.View.extend({
@@ -30,7 +30,7 @@ $(function() {
         _.bindAll(this, 'render', "template");
       },
     
-      render: function(){                                  
+      render: function() {                                  
         var tweet = this.model.get("retweeted_status") || this.model.attributes;
         var retweeted_status = this.model.get("retweeted_status");
         var element = $(this.el); 
@@ -41,9 +41,12 @@ $(function() {
         return this;
       },
       
-      template: function(tweet, retweeted_status){
-        var data = { tweet: tweet, retweeted_status: retweeted_status, pretty_date: this.parseDate(tweet["created_at"]) };
-        return _.template(this.templateStr, data);
+      template: function(tweet, retweeted_status) {
+        return _.template(this.templateStr, { 
+                            tweet: tweet, 
+                            retweeted_status: retweeted_status, 
+                            pretty_date: 
+                            this.parseDate(tweet["created_at"]) });
       },
       
       parseDate: function(date_str) {
@@ -63,7 +66,7 @@ $(function() {
     var TwitterView = Backbone.View.extend({
       el: $('div#tweets'),
     
-      initialize: function(){
+      initialize: function() {
         _.bindAll(this, 'render', 'appendItem', 'appendItems', 'refresh');  
       
         this.collection = new Twitter();
@@ -74,33 +77,35 @@ $(function() {
       },
     
       render: function(){   
-        $(this.el).append("<ul id='timeline'></ul>");      
+        this.el.append("<ul id='timeline'></ul>");
+        
+        return this;       
       },
       
       appendItems: function(tweets) {
-        _(this.collection.models).each(function(item){ // in case collection is not empty
+        _(this.collection.models).each(function(item) {
           this.appendItem(item);
         }, this);
       },
         
-      appendItem: function(tweet){     
+      appendItem: function(tweet) {     
         var tweetView = new TweetView({
           model: tweet
         });
         $('ul#timeline', this.el).append(tweetView.render().el);
       },
       
-      refresh: function(){
+      refresh: function() {
         var that = this;
-        var tweets = $.getJSON(this.collection.url, function(data, textStatus, jqXHR){ 
+        var tweets = $.getJSON(this.collection.url, function(data, textStatus, jqXHR) { 
           if(textStatus == "success") {
             $("#tweets").effect("highlight", {color:"#E8F5FB"}, 3000);
             $('ul#timeline', this.el).text(""); 
             that.collection.reset(data);
-          } 
+          }
         });
         
-        // setTimeout(this.refresh, 12000);        
+        setTimeout(this.refresh, 12000);        
       },  
     });
   
