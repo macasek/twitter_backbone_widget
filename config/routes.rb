@@ -9,7 +9,7 @@ HelloBackbonejs::Application.routes.draw do
     end
   end
   
-  resources :twitter, :only =>[:index]
+  root :to => "twitter#index"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
