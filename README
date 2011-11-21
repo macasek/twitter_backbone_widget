@@ -1,4 +1,2 @@
-A quickie backbone.js app/widget, this does not need to be a rails app at all, just taking advantage of the asset pipeline, etc. Could use some cleanup.    
+A quickie backbone.js app/widget. Could use some cleanup.    
 
-rails server
-http://localhost:3000

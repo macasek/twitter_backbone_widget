@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Example 1</title>
+    <script src="javascripts/jquery.min.js" type="text/javascript"></script>
+    <script src="javascripts/json2.js" type="text/javascript"></script>
+    <script src="javascripts/underscore.js" type="text/javascript"></script>
+    <script src="javascripts/backbone.js" type="text/javascript"></script>
+    <script>
+      $(function() {  
+        (function($){
+          // **ListView class**: Our main app view.
+          var ListView = Backbone.View.extend({    
+            el: $('body'), // attaches `this.el` to an existing element.
+            // `initialize()`: Automatically called upon instantiation. Where you make all types of bindings, _excluding_ UI events, such as clicks, etc.
+            initialize: function(){
+              _.bindAll(this, 'render'); // fixes loss of context for 'this' within methods
+
+               this.render(); // not all views are self-rendering. This one is.
+            },
+            // `render()`: Function in charge of rendering the entire view in `this.el`. Needs to be manually called by the user.
+            render: function(){
+              $(this.el).append("<ul> <li>hello world</li> </ul>");
+            }
+          });
+
+          // **listView instance**: Instantiate main app view.
+          var listView = new ListView();      
+        })(jQuery); 
+       });
+    </script>
+  </head>
+  <body>
+  </body> 
+</html>
