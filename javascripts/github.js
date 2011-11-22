@@ -10,7 +10,7 @@ $(function() {
     var ProjectView = Backbone.View.extend({
       tagName: 'li',
       className: 'project',
-      templateStr: '<h3><a href="<%= project.get("url") %>" target="_blank"><%= project.get("name") %></a></h3><p class="body"><%= project.get("description") %></p><p class="source_time">Updated: <span class="time" data-date="<%= project.get("pushed_at") %>"><%= pretty_date %></span></p>',
+      templateStr: '<h3><a href="<%= project.get("url") %>" target="_blank"><%= project.get("name") %></a></h3><p class="body"><%= project.get("description") %></p><p class="source_time">Updated: <span class="time" data-date="<%= project.get("pushed_at") %>"><%= pretty_date %></span></p><div class="separator"></div>',
 
       initialize: function(){
         _.bindAll(this, 'render', "template");
