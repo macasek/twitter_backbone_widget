@@ -10,7 +10,7 @@ $(function() {
     var ProjectView = Backbone.View.extend({
       tagName: 'li',
       className: 'project',
-      templateStr: '<h3><a href="<%= project.get("url") %>"><%= project.get("name") %></a></h3><p><%= project.get("description") %></p><p>Updated: <span class="time" data-date="<%= project.get("pushed_at") %>"><%= pretty_date %></span></p>',
+      templateStr: '<h3><a href="<%= project.get("url") %>" target="_blank"><%= project.get("name") %></a></h3><p class="body"><%= project.get("description") %></p><p class="source_time">Updated: <span class="time" data-date="<%= project.get("pushed_at") %>"><%= pretty_date %></span></p>',
 
       initialize: function(){
         _.bindAll(this, 'render', "template");
@@ -63,7 +63,7 @@ $(function() {
       },
     
       render: function(){   
-        this.el.append("<ul id='project_list'></ul><p><a href='http://github.com/macasek'>see all</a>");
+        this.el.append('<div class="header"><div class="right"><img src="images/spinner.gif" alt="loading..." height=16 width=16 /></div></div><div class="content"><ul id="project_list"></ul></div><div class="footer"><div class="right"><small><a href="http://github.com/macasek" target="_github">see more &raquo;</a></small></div></div>');
         
         return this;       
       },
@@ -82,8 +82,12 @@ $(function() {
       },
       
       refresh: function() {
+        $("#projects .header img").show(); 
+        
         var that = this;
         var projects = $.getJSON(this.collection.url, function(data, textStatus, jqXHR) { 
+          $("#projects .header img").hide();
+          
           if(textStatus == "success") {
             $("#projects").effect("highlight", {color:"#E8F5FB"}, 3000);
             $('ul#project_list', this.el).text("");     

@@ -2,8 +2,47 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #3E3E3E;
 }
-    
-#timeline {
+
+#tweets,
+#projects {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  border: 1px solid #cccccc; 
+  margin-top: 10px;
+  padding: 5px 10px;
+  width: 200px;  
+}
+
+#tweets .error,
+#projects .error {
+  font-size: 11px;  
+  margin-bottom: 10px;  
+  margin-top: 10px;
+}
+
+#tweets li,
+#projects li {  
+  list-style-type: none;  
+  margin: 5px 0px;  
+  overflow: hidden;
+}
+
+#tweets li .separator,
+#projects li .separator {  
+  border-bottom: 1px solid #c7c7c7;  
+  height: 1px;  min-width: 98%; 
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#tweets li:last-child .separator,
+#projects li:last-child .separator {
+  display:none;
+}
+
+#timeline,
+#project_list {
   padding: 0px;
 }
  
@@ -14,56 +53,42 @@ body {
   border-radius: 4px;
 }           
 
-.tweet .body { 
+.tweet .body,
+.project .body { 
   font-size: 11px; 
-  margin: 0px 0px 0px 40px;
+  margin: 0px;
 }
 
-.tweet .source_time {
-  margin-top: 5px;
+.tweet .body {
+  margin-left: 40px;
+}
+
+.project .body {
+  margin-top:5px;
+}
+
+.tweet .source_time,
+.project .source_time {
   font-size: 9px;
   margin: 5px 0px 0px 0px;
 }
 
-#tweets {
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  border: 1px solid #cccccc; 
-  margin-top: 10px;
-  padding: 5px 10px; 
-}
-
-#tweets .error {
-  font-size: 11px;  
-  margin-bottom: 10px;  
-  margin-top: 10px;
-}
-
-#tweets li {  
-  list-style-type: none;  
-  margin: 5px 0px;  
-  overflow: hidden;
-}
-
-#tweets li .separator {  
-  border-bottom: 1px solid #c7c7c7;  
-  height: 1px;  min-width: 98%; 
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-#tweets li:last-child .separator {
-  display:none;
-}
-
-#tweets {
-  width: 200px; 
-}        
+.tweet .time,
+.project .time {
+  color:#cccccc;
+} 
 
 .tweet .time {
-  color:#cccccc;
-  margin-left:5px;
+  margin-left:5px; 
+}
+
+.project h3 {
+  margin: 0px;
+  font-size: 15px;
+}
+
+.right {
+  text-align:right;
 }
   
   

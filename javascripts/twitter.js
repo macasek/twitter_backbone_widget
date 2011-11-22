@@ -10,7 +10,7 @@ $(function() {
     var TweetView = Backbone.View.extend({
       tagName: 'li',
       className: 'tweet',
-      templateStr: '<img src="<%= tweet["user"]["profile_image_url"] %>" alt="<%= tweet["user"]["name"] %>" height="32" width="32" class="rounded_small_image"><p class="body"><a href="http://twitter.com/<%= tweet["user"]["screen_name"] %>" target="_blank"><%= tweet["user"]["name"] %></a> says: "<%= tweet["text"] %></p><p class="source_time"><span class="source">via <%= tweet["source"] %></span><span class="time" style="color:#cccccc;" data-date="<%= tweet["created_at"] %>"><%= pretty_date %></span></p><div class="separator"></div>',
+      templateStr: '<img src="<%= tweet["user"]["profile_image_url"] %>" alt="<%= tweet["user"]["name"] %>" height="32" width="32" class="rounded_small_image"><p class="body"><a href="http://twitter.com/<%= tweet["user"]["screen_name"] %>" target="_blank"><%= tweet["user"]["name"] %></a> says: "<%= tweet["text"] %></p><p class="source_time"><span class="source">via <%= tweet["source"] %></span><span class="time" data-date="<%= tweet["created_at"] %>"><%= pretty_date %></span></p><div class="separator"></div>',
 
       initialize: function(){
         _.bindAll(this, 'render', "template");
@@ -63,7 +63,7 @@ $(function() {
       },
     
       render: function(){   
-        this.el.append("<ul id='timeline'></ul>");
+        this.el.append('<div class="header"><div class="right"><img src="images/spinner.gif" alt="loading..." height=16 width=16 /></div></div><div class="content"><ul id="timeline"></ul></div><div class="footer"><div class="right"><small><a href="http://twitter.com/macasek" target="_twitter">see more &raquo;</a></small></div></div>');
         
         return this;       
       },
@@ -82,8 +82,12 @@ $(function() {
       },
       
       refresh: function() {
+        $("#tweets .header img").show();
+        
         var that = this;
-        var tweets = $.getJSON(this.collection.url, function(data, textStatus, jqXHR) { 
+        var tweets = $.getJSON(this.collection.url, function(data, textStatus, jqXHR) {
+          $("#tweets .header img").hide();
+           
           if(textStatus == "success") {
             $("#tweets").effect("highlight", {color:"#E8F5FB"}, 3000);
             $('ul#timeline', this.el).text(""); 
